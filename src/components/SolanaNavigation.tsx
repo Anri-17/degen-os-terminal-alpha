@@ -1,5 +1,4 @@
-
-import { Search, TrendingUp, Zap, Target, Copy, Shield, BarChart3, AlertTriangle } from 'lucide-react';
+import { Search, TrendingUp, Target, Copy, Shield, BarChart3, AlertTriangle } from 'lucide-react';
 
 interface SolanaNavigationProps {
   activeTab: string;
@@ -10,7 +9,6 @@ export const SolanaNavigation = ({ activeTab, setActiveTab }: SolanaNavigationPr
   const navItems = [
     { id: 'discovery', label: 'Meme Discovery', icon: Search },
     { id: 'fresh', label: 'Fresh Memes', icon: TrendingUp },
-    { id: 'swap', label: 'Meme Trading', icon: Zap },
     { id: 'sniper', label: 'Auto Sniper', icon: Target },
     { id: 'copy', label: 'Copy Trading', icon: Copy },
     { id: 'rugwatch', label: 'Rugger Watch', icon: AlertTriangle },

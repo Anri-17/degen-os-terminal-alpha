@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { SolanaNavigation } from '@/components/SolanaNavigation';
 import { TokenDiscovery } from '@/components/TokenDiscovery';
 import { FreshTokensFeed } from '@/components/FreshTokensFeed';
-import { MemeSwapInterface } from '@/components/MemeSwapInterface';
 import { SniperBot } from '@/components/SniperBot';
 import { CopyTradingEngine } from '@/components/CopyTradingEngine';
 import { RuggerWatchlist } from '@/components/RuggerWatchlist';
@@ -19,8 +18,6 @@ const Index = () => {
         return <TokenDiscovery />;
       case 'fresh':
         return <FreshTokensFeed />;
-      case 'swap':
-        return <MemeSwapInterface />;
       case 'sniper':
         return <SniperBot />;
       case 'copy':
@@ -44,7 +41,7 @@ const Index = () => {
               MemeCoin Terminal
             </div>
             <div className="text-xs text-gray-400 bg-purple-800 px-2 py-1 rounded">
-              PUMP.FUN • MOONSHOT • RAYDIUM
+              PUMP.FUN • MOONSHOT • RAYDIUM • PUMP.SWAP
             </div>
           </div>
           <SolanaWalletConnector />

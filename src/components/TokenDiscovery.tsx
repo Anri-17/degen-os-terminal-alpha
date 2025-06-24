@@ -1,11 +1,13 @@
-
-import { useState, useEffect } from 'react';
-import { Search, TrendingUp, Shield, AlertTriangle, CheckCircle, ExternalLink, Target } from 'lucide-react';
+import { useState } from 'react';
+import { Search, Filter, TrendingUp, Users, DollarSign, Shield, ExternalLink } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const TokenDiscovery = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPlatform, setSelectedPlatform] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
+  const [sortBy, setSortBy] = useState('volume');
   const [tokens, setTokens] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -142,6 +144,10 @@ export const TokenDiscovery = () => {
     // This would integrate with the MemeSwapInterface
   };
 
+  const handleCoinClick = (address: string) => {
+    navigate(`/coin/${address}`);
+  };
+
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -196,6 +202,18 @@ export const TokenDiscovery = () => {
                   {status === 'all' ? 'All Statuses' : status.charAt(0).toUpperCase() + status.slice(1)}
                 </option>
               ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm text-gray-400 mb-2">Sort By</label>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="w-full bg-gray-800 border border-purple-700 rounded-lg px-4 py-2 text-white"
+            >
+              <option value="volume">Volume</option>
+              <option value="price">Price</option>
+              <option value="holders">Holders</option>
             </select>
           </div>
         </div>
