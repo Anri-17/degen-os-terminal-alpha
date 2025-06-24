@@ -1,4 +1,3 @@
-
 interface CoinHoldersProps {
   coinData: {
     symbol: string;
@@ -64,7 +63,7 @@ export const CoinHolders = ({ coinData }: CoinHoldersProps) => {
         <h4 className="font-bold mb-3">Holder Distribution</h4>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <div className="text-sm text-gray-400">Whales (>10%)</div>
+            <div className="text-sm text-gray-400">Whales ({'>'}10%)</div>
             <div className="text-lg font-bold text-red-400">2</div>
           </div>
           <div>
@@ -76,7 +75,7 @@ export const CoinHolders = ({ coinData }: CoinHoldersProps) => {
             <div className="text-lg font-bold text-yellow-400">45</div>
           </div>
           <div>
-            <div className="text-sm text-gray-400">Small (<0.1%)</div>
+            <div className="text-sm text-gray-400">Small ({'<'}0.1%)</div>
             <div className="text-lg font-bold text-green-400">147,837</div>
           </div>
         </div>
