@@ -1,12 +1,11 @@
-
 import { useState } from 'react';
 import { SolanaNavigation } from '@/components/SolanaNavigation';
 import { TokenDiscovery } from '@/components/TokenDiscovery';
-import { FreshTokensFeed } from '@/components/FreshTokensFeed';
-import { SniperBot } from '@/components/SniperBot';
-import { CopyTradingEngine } from '@/components/CopyTradingEngine';
+import { RealTimeTokenFeed } from '@/components/RealTimeTokenFeed';
+import { EnhancedSniperBot } from '@/components/EnhancedSniperBot';
+import { EnhancedCopyTrading } from '@/components/EnhancedCopyTrading';
 import { RuggerWatchlist } from '@/components/RuggerWatchlist';
-import { WalletAnalytics } from '@/components/WalletAnalytics';
+import { EnhancedPortfolio } from '@/components/EnhancedPortfolio';
 import { SolanaWalletConnector } from '@/components/SolanaWalletConnector';
 
 const Index = () => {
@@ -17,15 +16,15 @@ const Index = () => {
       case 'discovery':
         return <TokenDiscovery />;
       case 'fresh':
-        return <FreshTokensFeed />;
+        return <RealTimeTokenFeed />;
       case 'sniper':
-        return <SniperBot />;
+        return <EnhancedSniperBot />;
       case 'copy':
-        return <CopyTradingEngine />;
+        return <EnhancedCopyTrading />;
       case 'rugwatch':
         return <RuggerWatchlist />;
       case 'analytics':
-        return <WalletAnalytics />;
+        return <EnhancedPortfolio />;
       default:
         return <TokenDiscovery />;
     }
@@ -38,13 +37,18 @@ const Index = () => {
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center space-x-4">
             <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              MemeCoin Terminal
+              Solana Trading Terminal
             </div>
             <div className="text-xs text-gray-400 bg-purple-800 px-2 py-1 rounded">
-              PUMP.FUN • MOONSHOT • RAYDIUM • PUMP.SWAP
+              REAL-TIME • JUPITER • BIRDEYE • TELEGRAM
             </div>
           </div>
-          <SolanaWalletConnector />
+          <div className="flex items-center space-x-4">
+            <div className="text-xs text-gray-400">
+              Platform Fee: 0.25% • MEV Protected
+            </div>
+            <SolanaWalletConnector />
+          </div>
         </div>
       </header>
 
