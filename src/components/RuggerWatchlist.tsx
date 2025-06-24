@@ -75,7 +75,7 @@ export const RuggerWatchlist = () => {
     }
   };
 
-  const getRiskColor = (risk) => {
+  const getRiskColor = (risk: string) => {
     switch (risk) {
       case 'extreme': return 'text-red-400 bg-red-500/20 border-red-500/30';
       case 'high': return 'text-orange-400 bg-orange-500/20 border-orange-500/30';
@@ -223,7 +223,7 @@ export const RuggerWatchlist = () => {
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
               <input type="checkbox" defaultChecked className="w-4 h-4 text-red-400 bg-gray-700 border-red-600 rounded focus:ring-red-500" />
-              <label className="text-sm text-gray-300">Large buy alerts (>10 SOL)</label>
+              <label className="text-sm text-gray-300">Large buy alerts ({'>'}10 SOL)</label>
             </div>
             <div className="flex items-center space-x-2">
               <input type="checkbox" defaultChecked className="w-4 h-4 text-red-400 bg-gray-700 border-red-600 rounded focus:ring-red-500" />
