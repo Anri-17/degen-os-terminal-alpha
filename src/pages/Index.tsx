@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { SolanaNavigation } from '@/components/SolanaNavigation';
 import { TokenDiscovery } from '@/components/TokenDiscovery';
 import { FreshTokensFeed } from '@/components/FreshTokensFeed';
-import { SwapInterface } from '@/components/SwapInterface';
+import { MemeSwapInterface } from '@/components/MemeSwapInterface';
 import { SniperBot } from '@/components/SniperBot';
 import { CopyTradingEngine } from '@/components/CopyTradingEngine';
 import { RuggerWatchlist } from '@/components/RuggerWatchlist';
@@ -20,7 +20,7 @@ const Index = () => {
       case 'fresh':
         return <FreshTokensFeed />;
       case 'swap':
-        return <SwapInterface />;
+        return <MemeSwapInterface />;
       case 'sniper':
         return <SniperBot />;
       case 'copy':
@@ -41,10 +41,10 @@ const Index = () => {
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center space-x-4">
             <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              DegenOS Solana
+              MemeCoin Terminal
             </div>
             <div className="text-xs text-gray-400 bg-purple-800 px-2 py-1 rounded">
-              SOL TERMINAL
+              PUMP.FUN • MOONSHOT • RAYDIUM
             </div>
           </div>
           <SolanaWalletConnector />

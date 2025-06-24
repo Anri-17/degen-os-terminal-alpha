@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { TrendingUp, Shield, AlertTriangle, CheckCircle, Clock } from 'lucide-react';
+import { TrendingUp, Shield, AlertTriangle, CheckCircle, Clock, Zap, Target } from 'lucide-react';
 
 export const FreshTokensFeed = () => {
   const [freshTokens, setFreshTokens] = useState([]);
@@ -10,14 +10,15 @@ export const FreshTokensFeed = () => {
     minRugScore: 70,
     maxTax: 5,
     minLiquidity: 1000,
+    selectedPlatforms: ['pump.fun', 'moonshot', 'raydium', 'pump.swap'],
   });
 
-  // Mock fresh tokens data
+  // Mock fresh meme tokens data
   const mockFreshTokens = [
     {
-      mint: 'NewToken123...abc',
+      mint: 'NewMeme123...abc',
       symbol: 'MOON',
-      name: 'MoonShot Token',
+      name: 'MoonShot Meme',
       price: '$0.000000123',
       liquidity: '$45K',
       volume1h: '$12K',
@@ -30,11 +31,14 @@ export const FreshTokensFeed = () => {
       initialLiquidity: '$45K',
       trades: 47,
       holders: 23,
+      platform: 'pump.fun',
+      graduationStatus: 'pumping',
+      creator: '7fUf...kL9x'
     },
     {
-      mint: 'FreshToken456...def',
+      mint: 'FreshMeme456...def',
       symbol: 'DEGEN',
-      name: 'Degen Moon',
+      name: 'Degen Moon Cat',
       price: '$0.000000456',
       liquidity: '$78K',
       volume1h: '$8K',
@@ -47,11 +51,14 @@ export const FreshTokensFeed = () => {
       initialLiquidity: '$78K',
       trades: 89,
       holders: 45,
+      platform: 'moonshot',
+      graduationStatus: 'new',
+      creator: '9xYz...mN2p'
     },
     {
-      mint: 'RiskyToken789...ghi',
+      mint: 'RiskyMeme789...ghi',
       symbol: 'RISK',
-      name: 'High Risk Token',
+      name: 'High Risk Meme',
       price: '$0.000000789',
       liquidity: '$12K',
       volume1h: '$2K',
@@ -64,15 +71,38 @@ export const FreshTokensFeed = () => {
       initialLiquidity: '$12K',
       trades: 12,
       holders: 8,
+      platform: 'pump.swap',
+      graduationStatus: 'new',
+      creator: '5aB...cD4e'
+    },
+    {
+      mint: 'SafeMeme012...jkl',
+      symbol: 'PEPE2',
+      name: 'Pepe 2.0 Solana',
+      price: '$0.000001234',
+      liquidity: '$156K',
+      volume1h: '$34K',
+      rugScore: 95,
+      lpLocked: true,
+      mintRenounced: true,
+      buyTax: 0,
+      sellTax: 1,
+      createdAgo: '5m ago',
+      initialLiquidity: '$156K',
+      trades: 234,
+      holders: 89,
+      platform: 'raydium',
+      graduationStatus: 'soon',
+      creator: 'SafeDev...xyz'
     }
   ];
 
   useEffect(() => {
-    // Simulate real-time feed
+    // Simulate real-time feed from multiple platforms
     setFreshTokens(mockFreshTokens);
     const interval = setInterval(() => {
-      // Add new token every 30 seconds in real implementation
-      console.log('Polling for new tokens...');
+      console.log('Polling fresh meme coins from all platforms...');
+      // In real implementation, this would poll Birdeye, pump.fun, moonshot APIs
     }, 30000);
 
     return () => clearInterval(interval);
@@ -84,6 +114,7 @@ export const FreshTokensFeed = () => {
     if (token.rugScore < filters.minRugScore) return false;
     if (Math.max(token.buyTax, token.sellTax) > filters.maxTax) return false;
     if (parseInt(token.liquidity.replace(/[$K,]/g, '')) * 1000 < filters.minLiquidity) return false;
+    if (!filters.selectedPlatforms.includes(token.platform)) return false;
     return true;
   });
 
@@ -96,16 +127,76 @@ export const FreshTokensFeed = () => {
     return 'border-red-500/50 bg-red-500/10';
   };
 
+  const getPlatformColor = (platform) => {
+    switch (platform) {
+      case 'pump.fun': return 'text-orange-400 border-orange-500/30 bg-orange-500/10';
+      case 'moonshot': return 'text-blue-400 border-blue-500/30 bg-blue-500/10';
+      case 'raydium': return 'text-green-400 border-green-500/30 bg-green-500/10';
+      case 'pump.swap': return 'text-purple-400 border-purple-500/30 bg-purple-500/10';
+      default: return 'text-gray-400 border-gray-500/30 bg-gray-500/10';
+    }
+  };
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'graduated': return 'text-green-400';
+      case 'soon': return 'text-yellow-400';
+      case 'new': return 'text-blue-400';
+      case 'pumping': return 'text-purple-400';
+      default: return 'text-gray-400';
+    }
+  };
+
+  const handleQuickSnipe = (tokenSymbol) => {
+    console.log(`Quick sniping ${tokenSymbol} with safe filters`);
+  };
+
+  const handleQuickBuy = (tokenSymbol) => {
+    console.log(`Quick buying ${tokenSymbol} via Jupiter`);
+  };
+
+  const togglePlatform = (platform) => {
+    setFilters(prev => ({
+      ...prev,
+      selectedPlatforms: prev.selectedPlatforms.includes(platform)
+        ? prev.selectedPlatforms.filter(p => p !== platform)
+        : [...prev.selectedPlatforms, platform]
+    }));
+  };
+
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <TrendingUp size={24} className="text-green-400" />
-          <h2 className="text-2xl font-bold">Fresh Tokens Feed</h2>
+          <h2 className="text-2xl font-bold">Fresh Meme Coins</h2>
         </div>
         <div className="flex items-center space-x-2">
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-          <span className="text-sm text-gray-400">Live • {filteredTokens.length} safe tokens</span>
+          <span className="text-sm text-gray-400">Live • {filteredTokens.length} safe memes</span>
+        </div>
+      </div>
+
+      {/* Platform Toggles */}
+      <div className="bg-gray-900/50 border border-purple-800 rounded-lg p-4">
+        <h3 className="text-lg font-bold mb-3">Platform Sources</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {['pump.fun', 'moonshot', 'raydium', 'pump.swap'].map(platform => (
+            <button
+              key={platform}
+              onClick={() => togglePlatform(platform)}
+              className={`p-3 rounded-lg border transition-all ${
+                filters.selectedPlatforms.includes(platform)
+                  ? getPlatformColor(platform)
+                  : 'border-gray-700 bg-gray-800/30 text-gray-400 hover:border-gray-600'
+              }`}
+            >
+              <div className="font-bold">{platform}</div>
+              <div className="text-xs">
+                {mockFreshTokens.filter(t => t.platform === platform).length} tokens
+              </div>
+            </button>
+          ))}
         </div>
       </div>
 
@@ -113,7 +204,7 @@ export const FreshTokensFeed = () => {
       <div className="bg-gray-900/50 border border-green-800 rounded-lg p-4">
         <h3 className="text-lg font-bold mb-4 flex items-center">
           <Shield size={18} className="mr-2 text-green-400" />
-          100% Safe Filters
+          100% Safe Meme Filters
         </h3>
         
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -174,7 +265,7 @@ export const FreshTokensFeed = () => {
         </div>
       </div>
 
-      {/* Fresh Tokens List */}
+      {/* Fresh Meme Tokens List */}
       <div className="space-y-4">
         {filteredTokens.map((token, index) => (
           <div key={index} className={`p-4 rounded-lg border ${getSafetyColor(token)} hover:border-opacity-75 transition-all`}>
@@ -186,6 +277,9 @@ export const FreshTokensFeed = () => {
                 <div>
                   <div className="flex items-center space-x-2">
                     <span className="font-bold text-lg text-white">{token.symbol}</span>
+                    <span className={`px-2 py-1 rounded text-xs border ${getPlatformColor(token.platform)}`}>
+                      {token.platform}
+                    </span>
                     <div className="flex items-center space-x-1">
                       {token.lpLocked && <CheckCircle size={14} className="text-green-400" />}
                       {token.mintRenounced && <Shield size={14} className="text-blue-400" />}
@@ -197,6 +291,10 @@ export const FreshTokensFeed = () => {
                     <span className="text-xs text-gray-400">{token.createdAgo}</span>
                     <span className="text-xs text-gray-500">•</span>
                     <span className="text-xs text-gray-400">{token.holders} holders</span>
+                    <span className="text-xs text-gray-500">•</span>
+                    <span className={`text-xs font-medium ${getStatusColor(token.graduationStatus)}`}>
+                      {token.graduationStatus}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -223,10 +321,17 @@ export const FreshTokensFeed = () => {
               </div>
 
               <div className="flex space-x-2">
-                <button className="px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 text-sm font-medium hover:bg-green-500/30">
-                  Snipe
+                <button 
+                  onClick={() => handleQuickSnipe(token.symbol)}
+                  className="px-4 py-2 bg-yellow-500/20 border border-yellow-500/30 rounded-lg text-yellow-400 text-sm font-medium hover:bg-yellow-500/30 transition-all flex items-center space-x-1"
+                >
+                  <Target size={14} />
+                  <span>Snipe</span>
                 </button>
-                <button className="px-4 py-2 bg-purple-500/20 border border-purple-500/30 rounded-lg text-purple-400 text-sm font-medium hover:bg-purple-500/30">
+                <button 
+                  onClick={() => handleQuickBuy(token.symbol)}
+                  className="px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 text-sm font-medium hover:bg-green-500/30 transition-all"
+                >
                   Buy
                 </button>
               </div>
@@ -238,10 +343,36 @@ export const FreshTokensFeed = () => {
       {filteredTokens.length === 0 && (
         <div className="text-center py-8">
           <AlertTriangle size={48} className="text-gray-600 mx-auto mb-4" />
-          <div className="text-gray-400">No tokens match your safety filters</div>
-          <div className="text-sm text-gray-500 mt-2">Try adjusting your filter criteria</div>
+          <div className="text-gray-400">No fresh meme coins match your safety filters</div>
+          <div className="text-sm text-gray-500 mt-2">Try adjusting your filter criteria or check back in a few minutes</div>
         </div>
       )}
+
+      {/* Real-time Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="bg-gray-900/50 border border-green-800 rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-green-400">{filteredTokens.length}</div>
+          <div className="text-sm text-gray-400">Safe Memes Live</div>
+        </div>
+        <div className="bg-gray-900/50 border border-orange-800 rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-orange-400">
+            {filteredTokens.filter(t => t.createdAgo.includes('m')).length}
+          </div>
+          <div className="text-sm text-gray-400">Last Hour</div>
+        </div>
+        <div className="bg-gray-900/50 border border-blue-800 rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-blue-400">
+            {filteredTokens.reduce((sum, t) => sum + t.holders, 0)}
+          </div>
+          <div className="text-sm text-gray-400">Total Holders</div>
+        </div>
+        <div className="bg-gray-900/50 border border-purple-800 rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-purple-400">
+            {Math.round(filteredTokens.reduce((sum, t) => sum + t.rugScore, 0) / filteredTokens.length) || 0}
+          </div>
+          <div className="text-sm text-gray-400">Avg Safety Score</div>
+        </div>
+      </div>
     </div>
   );
 };

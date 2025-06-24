@@ -8,13 +8,13 @@ interface SolanaNavigationProps {
 
 export const SolanaNavigation = ({ activeTab, setActiveTab }: SolanaNavigationProps) => {
   const navItems = [
-    { id: 'discovery', label: 'Token Discovery', icon: Search },
-    { id: 'fresh', label: 'Fresh Tokens', icon: TrendingUp },
-    { id: 'swap', label: 'Jupiter Swap', icon: Zap },
+    { id: 'discovery', label: 'Meme Discovery', icon: Search },
+    { id: 'fresh', label: 'Fresh Memes', icon: TrendingUp },
+    { id: 'swap', label: 'Meme Trading', icon: Zap },
     { id: 'sniper', label: 'Auto Sniper', icon: Target },
     { id: 'copy', label: 'Copy Trading', icon: Copy },
     { id: 'rugwatch', label: 'Rugger Watch', icon: AlertTriangle },
-    { id: 'analytics', label: 'Wallet Analytics', icon: BarChart3 },
+    { id: 'analytics', label: 'Portfolio', icon: BarChart3 },
   ];
 
   return (
@@ -39,17 +39,47 @@ export const SolanaNavigation = ({ activeTab, setActiveTab }: SolanaNavigationPr
         })}
       </div>
 
-      {/* SOL Price & Network Stats */}
+      {/* Meme Coin Stats */}
       <div className="mt-8 p-4 bg-gray-800/30 rounded-lg border border-purple-700">
-        <div className="text-sm text-gray-400 mb-2">Solana Network</div>
-        <div className="flex items-center justify-between">
-          <div>
-            <div className="text-lg font-bold text-purple-400">$98.45</div>
-            <div className="text-xs text-green-400">+5.2%</div>
+        <div className="text-sm text-gray-400 mb-2">Meme Coin Market</div>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-400">SOL Price</span>
+            <div className="text-right">
+              <div className="text-sm font-bold text-purple-400">$98.45</div>
+              <div className="text-xs text-green-400">+5.2%</div>
+            </div>
           </div>
-          <div className="text-right">
-            <div className="text-xs text-gray-400">TPS</div>
-            <div className="text-sm font-bold text-green-400">2,847</div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-400">Active Memes</span>
+            <div className="text-sm font-bold text-green-400">1,247</div>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-400">24h Volume</span>
+            <div className="text-sm font-bold text-orange-400">$12.4M</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Platform Status */}
+      <div className="mt-4 p-4 bg-gray-800/30 rounded-lg border border-green-700">
+        <div className="text-sm text-gray-400 mb-2">Platform Status</div>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-orange-400">Pump.fun</span>
+            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-blue-400">Moonshot</span>
+            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-green-400">Raydium</span>
+            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-purple-400">Pump.swap</span>
+            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
           </div>
         </div>
       </div>
