@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Search, Filter, TrendingUp, Users, DollarSign, Shield, ExternalLink } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Search, Filter, TrendingUp, Users, DollarSign, Shield, ExternalLink, CheckCircle, AlertTriangle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export const TokenDiscovery = () => {
