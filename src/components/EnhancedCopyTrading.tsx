@@ -338,7 +338,7 @@ export const EnhancedCopyTrading = () => {
                     onChange={(e) => setCopyConfig({...copyConfig, skipHighTax: e.target.checked})}
                     className="w-4 h-4 text-blue-400 bg-gray-700 border-blue-600 rounded focus:ring-blue-500"
                   />
-                  <label className="text-sm text-gray-300">Skip high tax tokens (>5%)</label>
+                  <label className="text-sm text-gray-300">Skip high tax tokens ({'>'} 5%)</label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <input
